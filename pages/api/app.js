@@ -1,11 +1,36 @@
 const express = require('express');
-const dotenv = require('dotenv');
+const cors = require('cors');
+const app = express(); // Initialize app with Express.
 
-dotenv.config();
+// Enable CORS
+app.use(cors());
 
-const app = express();
+// Enable incoming JSON data
+app.use(express.json());
 
-const PORT = process.env.PORT || 4001;
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}.`);
+// Get all to-do's
+app.get('/', (req, res) => {
+    res.send('Todos GET Request');
 });
+
+// Get one to-do
+app.get('/:id', (req, res) => {
+    res.send('Todo GET Request');
+});
+
+// Post a to-do
+app.post('/', (req, res) => {
+    res.send('Todo POST Request');
+});
+
+// Delete a to-do
+app.put('/', (req, res) => {
+    res.send('Todo DELETE Request');
+});
+
+// Update a to-do
+app.put('/', (req, res) => {
+    res.send('Todo UPDATE Request');
+});
+
+module.exports = { app };

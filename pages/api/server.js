@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 dotenv.config(); // Activate dotenv to read env variables
 
 // Models
+const { User } = require('./models/user.model');
+const { Task } = require('./models/task.model');
 
 // Utils 
 const { db } = require('./utils/database');
@@ -12,6 +14,10 @@ const { db } = require('./utils/database');
 db.authenticate()
     .then(() => console.log('Database authenticated.'))
     .catch((err) => console.log(err));
+
+// Establish models relations
+User.hasMany(Task);
+Task.belongsTo(User);
 
 // Sync Sequelize model
 db.sync()

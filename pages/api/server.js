@@ -16,10 +16,10 @@ db.authenticate()
     .catch((err) => console.log(err));
 
 // Establish models relations
-User.hasMany(Task, {
-    foreignKey: 'userId',
-});
+/*
+User.hasMany(Task);
 Task.belongsTo(User);
+*/
 
 // Sync Sequelize model
 db.sync()

@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, INTEGER } = require('sequelize');
 const { db } = require('../utils/database');
 const { User } = require('./user.model'); 
 
@@ -8,18 +8,6 @@ const Task = db.define('task', {
         autoIncrement: true,
         allowNull: false,
         type: DataTypes.INTEGER,
-    },
-    userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: User,
-            key: 'id',
-        },
-    },
-    date: {
-        type: DataTypes.DATE,
-        allowNull: false,
     },
     title: {
         type: DataTypes.STRING,

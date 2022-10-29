@@ -12,13 +12,12 @@ const {
 
 const router = express.Router();
 
-router
-    .get('/', getAllTasks)
-    .get('/:id', getTaskById)
-    .post('/', createTask)
-    .patch('/:id', taskPending)
-    .patch('/:id', taskDoing)
-    .patch('/:id', taskCompleted)
-    .patch('/:id', deleteTask);
+router.get('/', getAllTasks);
+router.get('/:id', getTaskById);
+router.post('/', createTask);
+router.patch('/pending/:id', taskPending);
+router.patch('/doing/:id', taskDoing);
+router.patch('/done/:id', taskCompleted);
+router.patch('/delete/:id', deleteTask);
 
 module.exports = { taskRouter: router };

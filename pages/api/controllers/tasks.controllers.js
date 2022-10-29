@@ -39,7 +39,7 @@ const createTask = async (req, res) => {
         const { title, description } = req.body;
         const date = Date.now();
         const newTask = await Task.create({ date, title, description });
-        res.status(201).json({
+        return res.status(201).json({
             status: 'success',
             message: 'Successfully created task.',
             data: newTask,

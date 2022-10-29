@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 // Components
-import Todo from '../components/Todo';
+import TaskList from '../components/TaskList';
 
 export default function Home() {
   return (
@@ -12,9 +12,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1>Second Brain</h1>
-        <Todo />
+      <main className='w-screen'>
+        <div className=''>
+          <TaskList />
+        </div>
       </main>
     </div>
   )

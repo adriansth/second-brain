@@ -2,26 +2,26 @@ import { UserCircleIcon, ViewColumnsIcon, RectangleGroupIcon, CalendarDaysIcon, 
 
 export default function Sidebar() {
     return(
-        <div className='p-5 w-[15%] h-screen flex flex-col border-r gap-y-5'>
-            <div className='flex gap-x-2 hover:text-blue-400'>
+        <div className='p-5 w-[20%] lg:w-[15%] h-screen flex flex-col border-r gap-y-5 text-xs lg:text-md'>
+            <div className='flex justify-center sm:justify-start gap-x-2 hover:text-blue-400 text-gray-700'>
                 <UserCircleIcon className='w-5' />
-                <a href="#">Profile</a>
+                <a href="#" className='hidden sm:block'>Profile</a>
             </div>
-            <div className='flex gap-x-2 hover:text-blue-400'>
+            <div className='flex justify-center sm:justify-start gap-x-2 hover:text-blue-400 text-gray-700'>
                 <RectangleGroupIcon className='w-5' />
-                <a href="#">Dashboard</a>
+                <a href="#" className='hidden sm:block'>Dashboard</a>
             </div>
-            <div className='flex gap-x-2 hover:text-blue-400'>
+            <div className='flex justify-center sm:justify-start gap-x-2 hover:text-blue-400 text-gray-700'>
                 <ViewColumnsIcon className='w-5' />
-                <a href="#">Task List</a>
+                <a href="#" className='hidden sm:block'>Task List</a>
             </div>
-            <div className='flex gap-x-2 hover:text-blue-400'>
+            <div className='flex justify-center sm:justify-start gap-x-2 hover:text-blue-400 text-gray-700'>
                 <CalendarDaysIcon className='w-5' />
-                <a href="#">Calendar</a>
+                <a href="#" className='hidden sm:block'>Calendar</a>
             </div>
-            <div className='flex gap-x-2 hover:text-blue-400'>
+            <div className='flex justify-center sm:justify-start gap-x-2 hover:text-blue-400 text-gray-700'>
                 <Cog6ToothIcon className='w-5' />
-                <a href="#">Settings</a>
+                <a href="#" className='hidden sm:block'>Settings</a>
             </div>
         </div>
     );

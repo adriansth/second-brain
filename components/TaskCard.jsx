@@ -7,7 +7,7 @@ export default function TaskCard(props) {
             <div className='mb-3 flex items-center justify-between'>
                 <h3 className='text-2xl font-bold'>{props.title}</h3>
                 <div className='flex flex-col items-center justify-center'>
-                    <EllipsisHorizontalIcon className='w-7' />
+                    <EllipsisHorizontalIcon className='w-7 hover:text-blue-400' />
                 </div>
             </div>
             <p className='text-md text-gray-700 pb-3'>{props.description}</p>

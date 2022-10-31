@@ -15,7 +15,7 @@ export default function TaskList() {
     }, [tasks]);
 
     return(
-        <div className='w-full flex pt-5 select-none'>
+        <div className='w-[85%] flex pt-5 select-none bg-gray-100'>
             <div className='w-1/3 border-r'>
                 <div className='ml-5 text-gray-700 font-bold flex justify-between mr-5'>
                     <h2>To Do</h2>

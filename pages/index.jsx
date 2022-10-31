@@ -1,6 +1,8 @@
 import Head from 'next/head'
 
-// Components
+// components
+import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 import TaskList from '../components/TaskList';
 
 export default function Home() {
@@ -12,9 +14,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='w-screen'>
-        <div className=''>
-          <TaskList />
+      <main>
+        <div className='w-screen'>
+          <Navbar />
+          <div className='flex'>
+            <Sidebar />
+            <TaskList />
+          </div>
         </div>
       </main>
     </div>

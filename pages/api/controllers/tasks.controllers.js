@@ -1,5 +1,6 @@
 const { Task } = require('../models/task.model');
 
+// get all tasks
 const getAllTasks = async (req, res) => {
     try {
         const tasks = await Task.findAll();
@@ -13,6 +14,7 @@ const getAllTasks = async (req, res) => {
     }
 }
 
+// get a task by id
 const getTaskById = async (req, res) => {
     try {
         const id = req.params;
@@ -34,11 +36,18 @@ const getTaskById = async (req, res) => {
     }
 }
 
+// create a new task
 const createTask = async (req, res) => {
     try {
         const { title, description } = req.body;
         const date = Date.now();
         const newTask = await Task.create({ date, title, description });
+        if (!title) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'Title must not be empty.',
+            });
+        }
         return res.status(201).json({
             status: 'success',
             message: 'Successfully created task.',
@@ -49,6 +58,7 @@ const createTask = async (req, res) => {
     }
 }
 
+// update task to pending 
 const taskPending = async (req, res) => {
     try {
         const { id } = req.params;
@@ -71,6 +81,7 @@ const taskPending = async (req, res) => {
     }
 }
 
+// update task to doing
 const taskDoing = async (req, res) => {
     try {
         const { id } = req.params;
@@ -93,6 +104,7 @@ const taskDoing = async (req, res) => {
     }
 }
 
+// update task to completed 
 const taskCompleted = async (req, res) => {
     try {
         const { id } = req.params;
@@ -115,6 +127,7 @@ const taskCompleted = async (req, res) => {
     }
 }
 
+// delete a task (update to deleted)
 const deleteTask = async (req, res) => {
     try {
         const { id } = req.params;

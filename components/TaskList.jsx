@@ -37,7 +37,10 @@ export default function TaskList() {
                     {
                         tasks.filter(task => task.status === 'pending').map(filteredTask => (
                             <div key={filteredTask.id} className='m-5'>
-                                <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                {
+                                    filteredTask.title && 
+                                    <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                }
                             </div>
                         ))
                     }
@@ -58,7 +61,10 @@ export default function TaskList() {
                     {
                         tasks.filter(task => task.status === 'doing').map(filteredTask => (
                             <div key={filteredTask.id} className='m-5'>
-                                <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                {
+                                    filteredTask.title && 
+                                    <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                }
                             </div>
                         ))
                     }
@@ -72,7 +78,10 @@ export default function TaskList() {
                     {
                         tasks.filter(task => task.status === 'done').map(filteredTask => (
                             <div key={filteredTask.id} className='m-5'>
-                                <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                {
+                                    filteredTask.title && 
+                                    <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                }
                             </div>
                         ))
                     }

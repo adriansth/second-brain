@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import ReactModal from 'react-modal';
 
 // icons
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
@@ -8,22 +7,22 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 
 // components
 import TaskCard from './TaskCard';
-import NewTaskModal from './NewTaskModal';
+import TaskForm from './TaskForm';
 
 export default function TaskList() {
 
     const [tasks, setTasks] = useState([]);
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [newTaskOpen, setNewTaskOpen] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/tasks')
             .then((res) => setTasks(res.data.data));
     }, [tasks]);
 
-    const handleRequestClose = (e) => {
+    const displayNewTaskForm = (e) => {
         e.preventDefault();
-        setModalIsOpen(false);
-    } 
+        setNewTaskOpen(true);
+    }
 
     return(
         <div className='w-[80%] lg:w-[85%] h-screen'>
@@ -46,10 +45,20 @@ export default function TaskList() {
                     }
                     {/* add task button */}
                     <div 
-                        className='h-9 bg-white shadow-lg border rounded-lg m-5 flex justify-center items-center cursor-pointer hover:bg-blue-100'
-                        onClick={() => setModalIsOpen(true)}
+                        className='h-9 bg-white shadow-lg border rounded-t-lg mx-5 mt-5 flex justify-center items-center cursor-pointer hover:bg-blue-100'
+                        onMouseEnter={displayNewTaskForm} onMouseLeave={() => setNewTaskOpen(false)}
                     >
                         <PlusIcon className='w-5' />
+                    </div>
+                    {/* new task form */}
+                    <div 
+                        className='mx-5 mb-5'
+                        onMouseEnter={() => setNewTaskOpen(true)} onMouseLeave={() => setNewTaskOpen(false)}
+                    >
+                        {
+                            newTaskOpen && 
+                            <TaskForm />
+                        }
                     </div>
                 </div>
                 {/* in progress */}
@@ -87,21 +96,6 @@ export default function TaskList() {
                     }
                 </div>
             </div>
-                {/* new task modal */}
-                <ReactModal className=''
-                    isOpen={modalIsOpen} 
-                    onRequestClose={handleRequestClose}
-                    style={{ 
-                        overlay: {
-                            backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                        },
-                        content: {
-                            padding: '0',
-                        }
-                     }}
-                >
-                    <NewTaskModal />
-                </ReactModal>
         </div>
     );
 }

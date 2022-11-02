@@ -39,7 +39,7 @@ export default function TaskList() {
                             <div key={filteredTask.id} className='m-5'>
                                 {
                                     filteredTask.title && 
-                                    <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                    <TaskCard key={filteredTask.id} id={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
                                 }
                             </div>
                         ))
@@ -63,7 +63,7 @@ export default function TaskList() {
                             <div key={filteredTask.id} className='m-5'>
                                 {
                                     filteredTask.title && 
-                                    <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                    <TaskCard key={filteredTask.id} id={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
                                 }
                             </div>
                         ))
@@ -80,7 +80,7 @@ export default function TaskList() {
                             <div key={filteredTask.id} className='m-5'>
                                 {
                                     filteredTask.title && 
-                                    <TaskCard key={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
+                                    <TaskCard key={filteredTask.id} id={filteredTask.id} title={filteredTask.title} description={filteredTask.description} createdAt={filteredTask.createdAt} status={filteredTask.status} />
                                 }
                             </div>
                         ))

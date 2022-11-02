@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 // icons
 import { EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
@@ -17,6 +18,11 @@ export default function TaskCard(props) {
         setOptsOpen(false);
     }
 
+    const deleteTask = () => {
+        axios.patch(`http://localhost:8080/api/tasks/delete/${props.id}`)
+            .catch((err) => console.log(err));
+    }
+
     return(
         <div>
             <div className='p-5 border shadow-lg rounded-lg cursor-pointer w-full select-none border bg-white relative'>
@@ -32,7 +38,10 @@ export default function TaskCard(props) {
                 {
                     optsOpen && (
                         <div className='border bg-white w-[100px] rounded-lg shadow-lg bg-gray-100 absolute top-5 right-0' onMouseLeave={handleMouseLeave}>
-                            <p className='text-xs p-2 border-b hover:bg-gray-200 cursor-pointer font-bold text-red-400'>Delete</p>
+                            <p 
+                                className='text-xs p-2 border-b hover:bg-gray-200 cursor-pointer font-bold text-red-400'
+                                onClick={deleteTask}
+                            >Delete</p>
                             <p className='text-xs p-2 hover:bg-gray-200 cursor-pointer font-bold'>Highlight</p>
                         </div>
                     )

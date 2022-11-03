@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // icons 
 import { CheckIcon } from '@heroicons/react/24/outline';
 import axios from 'axios';
@@ -16,11 +16,13 @@ export default function TaskForm() {
                 description: description
             });
         }
+        setTitle('');
+        setDescription('');
     }
 
     return(
         <div className='flex flex-col items-center'>
-            <div className='border shadow-lg rounded-b-lg cursor-pointer w-full select-none border bg-white relative'>
+            <div className='border shadow-lg rounded-lg cursor-pointer w-full select-none border bg-white relative'>
                 {/* title of form */}
                 <div>
                     <h3 className='text-sm font-bold text-gray-700 p-3 border-b'>Add new task</h3>

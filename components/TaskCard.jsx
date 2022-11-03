@@ -2,22 +2,47 @@ import { useState } from 'react';
 import axios from 'axios';
 
 // icons
-import { EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
+import { EllipsisHorizontalCircleIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon } from '@heroicons/react/24/outline';
 
 export default function TaskCard(props) {
 
     const [optsOpen, setOptsOpen] = useState(false);
 
+    // open new task form
     const handleClick = () => {
         if (!optsOpen) {
             setOptsOpen(true);
         }
     }
 
+    // close new task form
     const handleMouseLeave = () => {
         setOptsOpen(false);
     }
 
+    // update task: to do -> doing -> done
+    const updateTaskRight = () => {
+        if (props.status === 'pending') {
+            axios.patch(`http://localhost:8080/api/tasks/doing/${props.id}`)
+                .catch(err => console.log(err));
+        } else if (props.status === 'doing') {
+            axios.patch(`http://localhost:8080/api/tasks/done/${props.id}`)
+                .catch(err => console.log(err));
+        }
+    }
+
+    // update task: done -> doing -> to do
+    const updateTaskLeft = () => {
+        if (props.status === 'done') {
+            axios.patch(`http://localhost:8080/api/tasks/doing/${props.id}`)
+                .catch(err => console.log(err));
+        } else if (props.status === 'doing') {
+            axios.patch(`http://localhost:8080/api/tasks/pending/${props.id}`)
+                .catch(err => console.log(err));
+        }
+    }
+
+    // delete task
     const deleteTask = () => {
         axios.patch(`http://localhost:8080/api/tasks/delete/${props.id}`)
             .catch((err) => console.log(err));
@@ -33,7 +58,17 @@ export default function TaskCard(props) {
                     <EllipsisHorizontalCircleIcon className='w-5 hover:text-blue-500' onClick={handleClick} />
                 </div>
                 <p className='text-xs md:text-md text-gray-700 pb-3'>{props.description}</p>
-                <p className='hidden md:block text-xs text-gray-400 text-gray-400'>{props.createdAt}</p>
+                <div className='flex justify-between'>
+                    <p className='hidden md:block text-xs text-gray-400 text-gray-400'>{props.createdAt}</p>
+                    <div className='flex text-blue-400'>
+                        <div className='w-5'>
+                            <ArrowLeftCircleIcon onClick={updateTaskLeft} />
+                        </div>
+                        <div className='w-5'>
+                            <ArrowRightCircleIcon onClick={updateTaskRight} />
+                        </div>
+                    </div>
+                </div>
                 {/* options dropdown */}
                 {
                     optsOpen && (

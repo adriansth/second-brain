@@ -19,20 +19,37 @@ export default function TaskList() {
             .then((res) => setTasks(res.data.data));
     }, [tasks]);
 
-    const displayNewTaskForm = (e) => {
+    const addTask = (e) => {
         e.preventDefault();
-        setNewTaskOpen(true);
+        if (!newTaskOpen) {
+            setNewTaskOpen(true);
+        } else {
+            setNewTaskOpen(false);
+        }
     }
 
     return(
         <div className='w-[80%] lg:w-[85%] h-screen'>
             <div className='w-full flex pt-5 select-none bg-gray-100 h-screen'>
                 {/* to do */}
-                <div className='w-1/3 border-r'>
+                <div className='w-1/3 border-r' onMouseLeave={() => setNewTaskOpen(false)}>
                     <div className='ml-5 text-gray-700 font-bold flex justify-between mr-5'>
                         <h2>To Do</h2>
-                        <EllipsisHorizontalIcon className='w-7 hover:text-sky-500 cursor-pointer' />
+                        <div className='flex'>
+                            <PlusIcon 
+                                className='w-7 hover:text-sky-500 cursor-pointer'
+                                onClick={addTask}
+                            />
+                            <EllipsisHorizontalIcon className='w-7 hover:text-sky-500 cursor-pointer' />
+                        </div>
                     </div>
+                    {/* new task form */}
+                    {
+                        newTaskOpen && 
+                        <div className='m-5'>
+                            <TaskForm />
+                        </div>
+                    }
                     {
                         tasks.filter(task => task.status === 'pending').map(filteredTask => (
                             <div key={filteredTask.id} className='m-5'>
@@ -43,23 +60,6 @@ export default function TaskList() {
                             </div>
                         ))
                     }
-                    {/* add task button */}
-                    <div 
-                        className='h-9 bg-white shadow-lg border rounded-t-lg mx-5 mt-5 flex justify-center items-center cursor-pointer hover:bg-blue-100'
-                        onMouseEnter={displayNewTaskForm} onMouseLeave={() => setNewTaskOpen(false)}
-                    >
-                        <PlusIcon className='w-5' />
-                    </div>
-                    {/* new task form */}
-                    <div 
-                        className='mx-5 mb-5'
-                        onMouseEnter={() => setNewTaskOpen(true)} onMouseLeave={() => setNewTaskOpen(false)}
-                    >
-                        {
-                            newTaskOpen && 
-                            <TaskForm />
-                        }
-                    </div>
                 </div>
                 {/* in progress */}
                 <div className='w-1/3 border-r'>

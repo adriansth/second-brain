@@ -15,7 +15,7 @@ export default function TaskList() {
     const [newTaskOpen, setNewTaskOpen] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/tasks')
+        axios.get('http://localhost:8080/api/tasks')
             .then((res) => setTasks(res.data.data));
     }, [tasks]);
 

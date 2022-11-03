@@ -31,7 +31,7 @@ export default function TaskForm() {
                             <input 
                                 type="text" 
                                 id='title' 
-                                className='border w-full rounded-lg focus:outline-none p-2 text-xs text-gray-700' 
+                                className='border w-full rounded-lg focus:outline-none p-2 text-xs text-gray-700 selection:bg-gray-200' 
                                 onChange={(e) => setTitle(e.target.value)}   
                             />
                         </div>

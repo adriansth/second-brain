@@ -3,12 +3,9 @@ import Head from 'next/head';
 // components
 import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
-// utils
-import { getMonth } from '../../utils/dates';
+import Calendar from '../../components/Calendar';
 
 export default function CalendarPage() {
-
-    console.table(getMonth());
 
     return(
         <div>
@@ -18,10 +15,11 @@ export default function CalendarPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <div className='w-screen'>
+                <div className='w-screen h-screen'>
                     <Navbar />
-                    <div className='flex'>
+                    <div className='flex w-full h-full'>
                         <Sidebar />
+                        <Calendar />
                     </div>
                 </div>
             </main>

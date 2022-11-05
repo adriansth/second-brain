@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar';
 import Sidebar from '../../components/Sidebar';
 import TaskList from '../../components/TaskList';
 
-export default function DocumentsPage() {
+export default function CalendarPage() {
     return(
         <div>
             <Head>

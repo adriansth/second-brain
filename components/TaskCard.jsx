@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios';
-
 // icons
 import { EllipsisHorizontalCircleIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon } from '@heroicons/react/24/outline';
 
@@ -49,7 +48,6 @@ export default function TaskCard(props) {
     }
 
     return(
-        <div>
             <div className='p-5 border shadow-lg rounded-lg cursor-pointer w-full select-none border bg-white relative'>
                 {/* title and status */}
                 <div className='mb-3 flex items-center justify-between'>
@@ -82,6 +80,5 @@ export default function TaskCard(props) {
                     )
                 }
             </div>
-        </div>
     );
 }

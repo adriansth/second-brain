@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 // utils
 import { getMonth } from '../utils/dates';
+import dayjs from 'dayjs';
 // components
 import CalendarHeader from '../components/CalendarHeader';
 import CalendarMonth from '../components/CalendarMonth';
-import CalendarSidebar from '../components/CalendarSidebar';
-import { useEffect } from 'react';
 
 export default function Calendar() {
 
     const calendarMonthIndex = useSelector(state => state.calendarMonthIndex); // bring the calendar index state
+    // console.log(dayjs().month(1).format("MMMM"));
 
     return(
         <div className='w-[80%] lg:w-[85%] h-[92%]'>

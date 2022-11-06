@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // components
 import CalendarHeader from '../components/CalendarHeader';
 import CalendarMonth from '../components/CalendarMonth';
@@ -8,11 +8,7 @@ import { getMonth } from '../utils/dates';
 
 export default function Calendar() {
 
-    const [currentMonth, setCurrentMonth] = useState([]);
-    
-    useEffect(() => {
-        setCurrentMonth(getMonth());
-    }, []);
+    const [currentMonth, setCurrentMonth] = useState(getMonth());
 
     return(
         <div className='w-[80%] lg:w-[85%] h-[92%]'>

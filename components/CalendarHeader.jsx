@@ -26,9 +26,14 @@ export default function CalendarHeader() {
     return(
         <div className='px-4 py-2 flex justify-between items-center'>
             {/* month name */}
-            <h2 className='font-bold text-gray-700'>
-                {dayjs().month(calendarMonthIndex).format("MMMM")}
-            </h2>
+            <div className='flex gap-x-2'>
+                <h2 className='font-bold text-gray-700'>
+                    {dayjs().month(calendarMonthIndex).format("MMMM")}
+                </h2>
+                <h2 className='font-bold text-gray-700'>
+                    {dayjs().month(calendarMonthIndex).format("YYYY")}
+                </h2>
+            </div>
             {/* month selector */}
             <div className='flex items-center px-4 py-2 gap-x-3'>
                 <button 

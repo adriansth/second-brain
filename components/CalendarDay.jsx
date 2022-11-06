@@ -4,7 +4,7 @@ export default function CalendarDay({ day, rowIdx }) {
 
     const getCurrentDayClass = () => {
        if (day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")) {
-           return 'bg-blue-400 text-white rounded-full w-7 font-bold'
+           return 'bg-red-400 text-white rounded-full w-7 font-bold'
        } else {
            return "";
        }
@@ -15,7 +15,7 @@ export default function CalendarDay({ day, rowIdx }) {
             <div className='flex flex-col items-center'>
                 {
                     rowIdx === 0 && 
-                    <p className='text-xs mt-1'>{day.format('ddd').toUpperCase()}</p>                
+                    <p className='mt-1 font-bold text-blue-400'>{day.format('ddd').toUpperCase()}</p>                
                 }
                 <p className={`text-xs p-1 my-1 text-center ${getCurrentDayClass()}`}>
                     {day.format('DD')}

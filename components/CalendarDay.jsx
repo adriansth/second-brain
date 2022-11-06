@@ -4,9 +4,9 @@ export default function CalendarDay({ day, rowIdx }) {
             <div className='flex flex-col items-center'>
                 {
                     rowIdx === 0 && 
-                    <p className='text-sm mt-1'>{day.format('ddd').toUpperCase()}</p>                
+                    <p className='text-xs mt-1'>{day.format('ddd').toUpperCase()}</p>                
                 }
-                <p className='text-sm p-1 my-1 text-center'>
+                <p className='text-xs p-1 my-1 text-center'>
                     {day.format('DD')}
                 </p>
             </div>

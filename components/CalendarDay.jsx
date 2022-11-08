@@ -15,11 +15,13 @@ export default function CalendarDay({ day, rowIdx }) {
             <div className='flex flex-col items-center'>
                 {
                     rowIdx === 0 && 
-                    <p className='mt-1 font-bold text-blue-400'>{day.format('ddd').toUpperCase()}</p>                
+                    <p className='font-bold text-blue-400 border-b w-full text-center bg-gray-100'>{day.format('ddd').toUpperCase()}</p>                
                 }
-                <p className={`text-xs p-1 my-1 text-center ${getCurrentDayClass()}`}>
-                    {day.format('DD')}
-                </p>
+                <div className='w-full pr-3 flex justify-end'>
+                    <p className={`text-xs p-1 my-1 text-center ${getCurrentDayClass()}`}>
+                        {day.format('D')}
+                    </p>
+                </div>
             </div>
         </div>
     );

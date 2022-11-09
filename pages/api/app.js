@@ -1,7 +1,12 @@
+// routers
 const { taskRouter } = require('./routers/tasks.routers');
 const { userRouter } = require('./routers/users.routers');
+const { eventRouter } = require('./routers/events.routers');
+
+// dependencies
 const express = require('express');
 const cors = require('cors');
+
 const app = express(); // Initialize app with Express.
 
 // Enable CORS

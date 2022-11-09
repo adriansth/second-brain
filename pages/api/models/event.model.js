@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { db } = require('../utils/database');
 
-const Task = db.define('task', {
+const Event = db.define('event', {
     id: {
         primaryKey: true,
         autoIncrement: true,
@@ -10,17 +10,21 @@ const Task = db.define('task', {
     },
     title: {
         type: DataTypes.STRING,
+        allowNull: true,
+    },
+    date: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    hour: {
         type: DataTypes.STRING,
         allowNull: true,
     },
     status: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'pending',
+        defaultValue: 'upcoming', // upcoming, tomorrow, today, past
     },
 });
 
-module.exports = { Task };
+module.exports = { Event };

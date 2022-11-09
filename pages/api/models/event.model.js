@@ -23,7 +23,7 @@ const Event = db.define('event', {
     status: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'upcoming', // upcoming, tomorrow, today, past
+        defaultValue: 'active', // active, deleted
     },
 });
 

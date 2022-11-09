@@ -49,9 +49,40 @@ const createEvent = async (req, res) => {
         }
         return res.status(201).json({
             status: 'success',
-            message: 'Successfully created event.'
+            message: 'Successfully created event.',
+            data: newEvent,
         });
     } catch (err) {
         console.log(err);
     }
 }
+
+// delete an event (update to deleted)
+const deleteEvent = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const event = await Event.findOne({ where: { id, status: 'active' } });
+        if (!event) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'No event found with the given id.',
+            });
+        } else {
+            await event.update({ status: 'deleted' });
+            res.status(200).json({
+                status: 'success',
+                message: 'Successfully deleted event.',
+                data: event,
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+module.exports ={
+    getAllEvents, 
+    getEventById,
+    createEvent,
+    deleteEvent,
+};

@@ -19,7 +19,7 @@ const Task = db.define('task', {
     status: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'pending',
+        defaultValue: 'pending', // pending, doing, done, deleted
     },
 });
 

@@ -43,7 +43,7 @@ const createTask = async (req, res) => {
         const date = Date.now();
         const newTask = await Task.create({ date, title, description });
         if (!title) {
-            return res.status(404).json({
+            return res.status(400).json({
                 status: 'error',
                 message: 'Title must not be empty.',
             });

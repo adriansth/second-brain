@@ -39,12 +39,20 @@ const getEventById = async (req, res) => {
 // create a new event 
 const createEvent = async (req, res) => {
     try {
-        const { title, description, date, hour } = req.body;
-        const newEvent = await Event.create({ title, description, date, hour });
-        if (!title || !date) {
+        const { title, description, month, day, year, hour, minute } = req.body;
+        const newEvent = await Event.create({
+            title, 
+            description, 
+            month, 
+            day, 
+            year, 
+            hour, 
+            minute
+        });
+        if (!title || !month || !day || !year ) {
             return res.status(400).json({
                 status: 'error',
-                message: 'Title and date must not be empty.',
+                message: 'Title, month, day and year must not be empty.',
             });
         }
         return res.status(201).json({

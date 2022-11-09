@@ -2,25 +2,37 @@ const { DataTypes } = require('sequelize');
 const { db } = require('../utils/database');
 
 const Event = db.define('event', {
-    id: {
+    id: { // integer
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         type: DataTypes.INTEGER,
     },
-    title: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    date: {
+    title: { // string
         type: DataTypes.STRING,
         allowNull: false,
     },
-    hour: {
-        type: DataTypes.STRING,
+    month: { // integer from 0 to 11 
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    day: { // integer from 0 to 31
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    year: { // integer from 2022 to 3000
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    hour: { // integer from 0 to 24
+        type: DataTypes.INTEGER,
         allowNull: true,
     },
-    status: {
+    minute: { // integer from 0 to 59
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    status: { // string
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 'active', // active, deleted

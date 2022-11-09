@@ -6,6 +6,7 @@ dotenv.config(); // Activate dotenv to read env variables
 // Models
 const { User } = require('./models/user.model');
 const { Task } = require('./models/task.model');
+const { Event } = require('./models/event.model');
 
 // Utils 
 const { db } = require('./utils/database');

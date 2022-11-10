@@ -14,7 +14,6 @@ export default function EventForm() {
     const [minute, setMinute] = useState(0);
 
     const dispatch = useDispatch();
-    const newEventModalFormIsOpen = useSelector(state => state.newEventModalFormIsOpen);
 
     const closeModal = (e) => {
         e.preventDefault();
@@ -31,7 +30,9 @@ export default function EventForm() {
             day: dayjs().format('D'),
             month: dayjs().format('M'),
             year: dayjs().format('YYYY'),
-        }).catch((err) => console.log(err));
+        })
+        .then(() => dispatch({type: 'CLOSE_EVENT_MODAL_FORM'}))
+        .catch((err) => console.log(err));
     }
 
     return(

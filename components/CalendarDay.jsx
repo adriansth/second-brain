@@ -1,10 +1,14 @@
+import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+import axios from 'axios';
 // icons 
 import { PlusIcon } from '@heroicons/react/24/outline';
 // redux 
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function CalendarDay({ day, rowIdx }) {
+
+    const [events, setEvents] = useState([]);
 
     const dispatch = useDispatch();
     const newEventModalIsOpen = useSelector(state => state.newEventModalIsOpen);
@@ -15,12 +19,6 @@ export default function CalendarDay({ day, rowIdx }) {
         }
     }
 
-    const closeNewEventModalForm = () => {
-        if (newEventModalIsOpen) {
-            dispatch({type: "CLOSE_EVENT_MODAL_FORM"});
-        }
-    }
-
     const getCurrentDayClass = () => {
        if (day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")) {
            return 'bg-red-400 text-white rounded-full w-7'
@@ -28,6 +26,12 @@ export default function CalendarDay({ day, rowIdx }) {
            return "";
        }
     }
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/events')
+            .then((res) => setEvents(res.data.data))
+            .catch((err) => console.log(err));
+    }, [events]);
 
     return(
         <div className='border flex flex-col select-none'>
@@ -48,6 +52,18 @@ export default function CalendarDay({ day, rowIdx }) {
                             onClick={openNewEventModalForm}
                         />
                     </div>
+                </div>
+                <div className='w-full px-3'>
+                    {
+                        events.map((event) => (
+                            <p 
+                                key={event.id}
+                                className='text-xs font-bold text-start bg-blue-400 my-1 text-white p-1 rounded-lg'
+                            >
+                                {event.title}
+                            </p>
+                        ))
+                    } 
                 </div>
            </div>
         </div>

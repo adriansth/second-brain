@@ -3,9 +3,10 @@ import dayjs from 'dayjs';
 
 const INITIAL_STATE = {
     calendarMonthIndex: dayjs().month(), // month num from 0 to 11 
+    newEventModalFormIsOpen: false, // true or false
 }
 
-const calendarReducer = (state = INITIAL_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         // this action increments the month index by 1
         case "INCREMENT_MONTH":
@@ -25,13 +26,24 @@ const calendarReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 calendarMonthIndex: dayjs().month(),
             };
+        // this action opens the new event modal form
+        case "OPEN_EVENT_MODAL_FORM":
+            return {
+                ...state,
+                newEventModalFormIsOpen: true,
+            }; 
+        // this action closes the new event modal form
+        case "CLOSE_EVENT_MODAL_FORM":
+            return {
+                ...state,
+                newEventModalFormIsOpen: false,
+            }
         // the default value is today's month index
         default:
             return {
                 ...state,
-                calendarMonthIndex: dayjs().month(),
             };
     }
 }
 
-export default calendarReducer;
+export default reducer;

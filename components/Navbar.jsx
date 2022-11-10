@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Navbar() {
     return(
-        <div className='w-full flex border-b'>
+        <div className='w-full h-[50px] flex border-b'>
             <div className='w-[10%] lg:w-[15%] border-r p-5 flex items-center justify-center sm:justify-start'>
                 <Link href='/'>
                     <BeakerIcon className='w-7 text-blue-400' />

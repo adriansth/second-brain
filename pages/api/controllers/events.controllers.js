@@ -29,7 +29,29 @@ const getEventById = async (req, res) => {
                 status: 'success',
                 message: 'Obtained event.',
                 data: event,
-            })
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+// get an event by date
+const getEventByDate = async (req, res) => {
+    try {
+        const { day, month, year } = req.params; 
+        const events = await Event.findAll({ where: { day, month, year } });
+        if (!events) {
+            return res.status(404).json({
+                status: 'error',
+                message: 'No event found with the given id.',
+            });
+        } else {
+            return res.status(200).json({
+                status: 'success',
+                message: 'Obtained events.',
+                data: events,
+            });
         }
     } catch (err) {
         console.log(err);
@@ -91,6 +113,7 @@ const deleteEvent = async (req, res) => {
 module.exports ={
     getAllEvents, 
     getEventById,
+    getEventByDate,
     createEvent,
     deleteEvent,
 };

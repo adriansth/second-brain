@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export default function CalendarDay({ day, rowIdx }) {
 
-    const [events, setEvents] = useState([]);
+    const [filteredEvents, setFilteredEvents] = useState([]);
 
     const dispatch = useDispatch();
     const newEventModalIsOpen = useSelector(state => state.newEventModalIsOpen);
@@ -27,11 +27,29 @@ export default function CalendarDay({ day, rowIdx }) {
        }
     }
 
+    /*
+    const getEventsByDate = (date) => {
+        const d = date.format('D');
+        const m = date.format('M');
+        const y = date.format("YYYY");
+        axios.get(`http://localhost:8080/api/events/${d}/${m}/${y}`)
+            .then((res) => {
+                return(res.data.data)
+            }
+        );
+    }
+    */
+
     useEffect(() => {
-        axios.get('http://localhost:8080/api/events')
-            .then((res) => setEvents(res.data.data))
+        const d = day.format('D');
+        const m = day.format('M');
+        const y = day.format("YYYY");
+        axios.get(`http://localhost:8080/api/events/${d}/${m}/${y}`)
+            .then((res) => {
+                setFilteredEvents(res.data.data);
+            })
             .catch((err) => console.log(err));
-    }, [events]);
+    }, [filteredEvents]);
 
     return(
         <div className='border flex flex-col select-none min-h-full'>
@@ -55,7 +73,7 @@ export default function CalendarDay({ day, rowIdx }) {
                 </div>
                 <div className='w-full px-3'>
                     {
-                        events.map((event) => (
+                        filteredEvents.map((event) => (
                             <p 
                                 key={event.id}
                                 className='text-[10px] font-bold text-start bg-blue-400 my-1 text-white p-[3px] rounded-lg hover:opacity-[70%] cursor-pointer'

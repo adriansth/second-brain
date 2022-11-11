@@ -34,7 +34,7 @@ export default function CalendarDay({ day, rowIdx }) {
     }, [events]);
 
     return(
-        <div className='border flex flex-col select-none'>
+        <div className='border flex flex-col select-none min-h-full'>
             <div className='flex flex-col items-center'>
                 {
                     rowIdx === 0 && 
@@ -58,7 +58,7 @@ export default function CalendarDay({ day, rowIdx }) {
                         events.map((event) => (
                             <p 
                                 key={event.id}
-                                className='text-xs font-bold text-start bg-blue-400 my-1 text-white p-1 rounded-lg'
+                                className='text-[10px] font-bold text-start bg-blue-400 my-1 text-white p-[3px] rounded-lg hover:opacity-[70%] cursor-pointer'
                             >
                                 {event.title}
                             </p>

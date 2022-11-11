@@ -61,7 +61,7 @@ const getEventByDate = async (req, res) => {
 // create a new event 
 const createEvent = async (req, res) => {
     try {
-        const { title, description, month, day, year, hour, minute } = req.body;
+        const { title, description, month, day, year, hour, minute, color } = req.body;
         const newEvent = await Event.create({
             title, 
             description, 
@@ -69,7 +69,8 @@ const createEvent = async (req, res) => {
             day, 
             year, 
             hour, 
-            minute
+            minute,
+            color,
         });
         if (!title || !month || !day || !year ) {
             return res.status(400).json({

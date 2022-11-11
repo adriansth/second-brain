@@ -32,6 +32,11 @@ const Event = db.define('event', {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
+    color: { // string
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'blue-400', // blue-400, red-700, orange-700, green-700, purple-700
+    },
     status: { // string
         type: DataTypes.STRING,
         allowNull: false,

@@ -19,6 +19,7 @@ export default function CalendarDay({ day, rowIdx }) {
         }
     }
 
+    // highlight today
     const getCurrentDayClass = () => {
        if (day.format("DD-MM-YY") === dayjs().format("DD-MM-YY")) {
            return 'bg-red-400 text-white rounded-full w-7'
@@ -27,19 +28,7 @@ export default function CalendarDay({ day, rowIdx }) {
        }
     }
 
-    /*
-    const getEventsByDate = (date) => {
-        const d = date.format('D');
-        const m = date.format('M');
-        const y = date.format("YYYY");
-        axios.get(`http://localhost:8080/api/events/${d}/${m}/${y}`)
-            .then((res) => {
-                return(res.data.data)
-            }
-        );
-    }
-    */
-
+    // get events by date
     useEffect(() => {
         const d = day.format('D');
         const m = day.format('M');
@@ -76,7 +65,7 @@ export default function CalendarDay({ day, rowIdx }) {
                         filteredEvents.map((event) => (
                             <p 
                                 key={event.id}
-                                className='text-[10px] font-bold text-start bg-blue-400 my-1 text-white p-[3px] rounded-lg hover:opacity-[70%] cursor-pointer'
+                                className={`text-[10px] font-bold text-start bg-${event.color} my-1 text-white p-[3px] rounded-lg hover:opacity-[70%] cursor-pointer`}
                             >
                                 {event.title}
                             </p>

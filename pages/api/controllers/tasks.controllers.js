@@ -62,7 +62,7 @@ const createTask = async (req, res) => {
 const taskPending = async (req, res) => {
     try {
         const { id } = req.params;
-        const task = await Task.findOne({ where: { id, status: 'doing' || 'completed' } });
+        const task = await Task.findOne({ where: { id } });
         if (!task) {
             res.status(404).json({
                 status: 'error',
@@ -85,7 +85,7 @@ const taskPending = async (req, res) => {
 const taskDoing = async (req, res) => {
     try {
         const { id } = req.params;
-        const task = await Task.findOne({ where: { id, status: 'pending' || 'completed' } });
+        const task = await Task.findOne({ where: { id } });
         if (!task) {
             res.status(404).json({
                 status: 'error',
@@ -108,7 +108,7 @@ const taskDoing = async (req, res) => {
 const taskCompleted = async (req, res) => {
     try {
         const { id } = req.params;
-        const task = await Task.findOne({ where: { id, status: 'pending' || 'doing' } });
+        const task = await Task.findOne({ where: { id }});
         if (!task) {
             res.status(404).json({
                 status: 'error',

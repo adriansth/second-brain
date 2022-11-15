@@ -3,7 +3,7 @@ const { Event } = require('../models/event.model');
 // get all events 
 const getAllEvents = async (req, res) => {
     try {
-        const events = await Event.findAll();
+        const events = await Event.findAll({ where: { status: 'active' } });
         res.status(200).json({
             status: 'success',
             message: 'Obtained all events.',
@@ -18,7 +18,7 @@ const getAllEvents = async (req, res) => {
 const getEventById = async (req, res) => {
     try {
         const id = req.params;
-        const event = await Event.findOne({ where: { id } });
+        const event = await Event.findOne({ where: { id, status: 'active' } });
         if (!event) {
             return res.status(404).json({
                 status: 'error',
@@ -40,7 +40,7 @@ const getEventById = async (req, res) => {
 const getEventByDate = async (req, res) => {
     try {
         const { day, month, year } = req.params; 
-        const events = await Event.findAll({ where: { day, month, year } });
+        const events = await Event.findAll({ where: { day, month, year, status: 'active' } });
         if (!events) {
             return res.status(404).json({
                 status: 'error',

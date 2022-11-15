@@ -12,6 +12,7 @@ export default function EventForm() {
     const [description, setDescription] = useState('');
     const [hour, setHour] = useState(0);
     const [minute, setMinute] = useState(0);
+    const [color, setColor] = useState('');
 
     const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ export default function EventForm() {
             day: dayjs().format('D'),
             month: dayjs().format('M'),
             year: dayjs().format('YYYY'),
+            color: color,
         })
         .then(() => dispatch({type: 'CLOSE_EVENT_MODAL_FORM'}))
         .catch((err) => console.log(err));
@@ -79,6 +81,15 @@ export default function EventForm() {
                         id='minute' 
                         className='border p-3 text-gray-700'
                         onChange={(e) => setMinute(e.target.value)}
+                    />
+                </div>
+                <div className='flex flex-col gap-y-5'>
+                    <label htmlFor="color" className='font-bold text-gray-700'>Color</label>
+                    <input 
+                        type="text"
+                        id='color'
+                        className='border p-3 text-gray-700'
+                        onChange={(e) => setColor(e.target.value)}
                     />
                 </div>
                 <button 
